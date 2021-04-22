@@ -8,8 +8,9 @@ function Header() {
             <MyTopNavbar/>
             <Jumbotron fluid={true}>
                 <Row className="justify-content-md-center">
-                    <Col xs={{offset:3}} md={{offset:4}} md={{offset:5}}>
-                        <h2>Roi's Todo List</h2>
+                    <Col >
+                        <h2 className={"text-center"}>Roi's Todo List</h2>
+                        <h3 className={"text-center"}>Welcome to my amazing todo list, Hope it will help you!</h3>
                     </Col>
                 </Row>
             </Jumbotron>

@@ -1,55 +1,84 @@
 import {React,useState} from 'react';
 
 import Header from "../../components/Header";
-import {Button, ButtonGroup, Card, Col, Container, Form, FormGroup, Modal} from "react-bootstrap";
-
+import {Button, ButtonGroup, Card, Col, Nav, NavItem, NavLink, Row, Tab} from "react-bootstrap";
+import {AddTaskModal, RemoveTaskModal, UpdateTaskModal} from '../../components/Modals/index'
+import {useSelector} from "react-redux";
 
 function Home(){
 
-    const [show,setShow]= useState(false);
+    const [showAdd,setShowAdd]= useState(false);
+    const [showUpdate,setShowUpdate]= useState(false);
+    const [showRemove,setShowRemove]= useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = ()=> setShow(true);
+    const handleCloseAdd = () => setShowAdd(false);
+    const handleShowAdd = ()=> setShowAdd(true);
+
+    const handleCloseUpdate = () => setShowUpdate(false);
+    const handleShowUpdate = ()=> setShowUpdate(true);
+
+    const handleCloseRemove = () => setShowRemove(false);
+    const handleShowRemove = ()=> setShowRemove(true);
+
+    const {list} = useSelector((state) => state.taskList)
 
     return(
         <>
             <Header/>
             <ButtonGroup className={"align-self-md-auto align-middle d-flex justify-content-center"}>
-                <Button variant={"dark"} onClick={handleShow}>Add Task</Button>
-                <Button variant={"dark"}>Update Task</Button>
-                <Button variant={"dark"}>Remove Task</Button>
+                <Button variant={"dark"} onClick={handleShowAdd}>Add Task</Button>
+                <Button variant={"dark"} onClick={handleShowUpdate}>Update Task</Button>
+                <Button variant={"dark"} onClick={handleShowRemove}>Remove Task</Button>
             </ButtonGroup>
+            <AddTaskModal show={showAdd} handleShow={handleShowAdd} handleClose={handleCloseAdd}/>
+            <UpdateTaskModal show={showUpdate} handleShow={handleCloseUpdate} handleClose={handleCloseUpdate}/>
+            <RemoveTaskModal show={showRemove} handleShow={handleShowRemove} handleClose={handleCloseRemove}/>
+            <Row>
+                <Col sm={2}>
+                    <h4 className={"text-center"}>Task Name</h4>
+                </Col>
+                <Col sm={10} >
+                    <h4 className={"text-center"}>Task Description</h4>
+                </Col>
+            </Row>
+            <Tab.Container id={"left-tabs"} defaultActiveKey={"first"}>
+            {list.map((task,idx) =>{
+                return(
+                <Row>
+                    <Col sm={2}>
+                        <Nav variant={"pills"} className={"flex-column"}>
+                            <NavItem>
+                                <NavLink eventKey={idx}>
+                                    {task.TaskName}
+                                </NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Col>
+                    <Col sm={10}>
+                        <Tab.Content>
+                            <Tab.Pane eventKey={idx}>
+                                <Card bg={"light"} border={"dark"} key={idx}>
+                                    <Card.Body>
+                                        <Card.Title>
+                                            {task.TaskName}
+                                        </Card.Title>
+                                        <Card.Text >
+                                            {task.Task}
 
-            <Modal show={show} onHide={handleClose}
-                   size="lg"
-                   aria-labelledby="contained-modal-title-vcenter"
-                   centered>
-                <Modal.Header closeButton>
-                    <Modal.Title >Add new task</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <FormGroup as={"Row"} controlId={"task.ControlInput1"}>
-                            <Form.Label>Full Name:</Form.Label>
-                            <Form.Control type={"text"} placeholder={"Full Name"}/>
-                        </FormGroup>
-                        <FormGroup as={"Row"} controlId={"task.ControlInput1"}>
-                            <Form.Label>Task Name:</Form.Label>
-                            <Form.Control type={"text"} placeholder={"Task Name"}/>
-                        </FormGroup>
-                        <FormGroup as={"Row"} controlId={"task.ControlInput2"}>
-                            <Form.Label>Task:</Form.Label>
-                            <Form.Control as={"textarea"} placeholder={"Write task here..."}/>
-                        </FormGroup>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>Close</Button>
-                    <Button variant="primary" onClick={handleClose}>Save Changes</Button>
-                </Modal.Footer>
-            </Modal>
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer className={"small"}>
+                                        <blockquote>By {task.Author}</blockquote>
+                                    </Card.Footer>
+                                </Card>
+                            </Tab.Pane>
+                        </Tab.Content>
+                    </Col>
+                </Row>
+                )
+            })}
+            </Tab.Container>
         </>
-
     )
 }
 export default Home;

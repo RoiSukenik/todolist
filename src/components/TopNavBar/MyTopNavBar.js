@@ -19,7 +19,7 @@ function MyTopNavbar(){
                         <Nav.Link href="/" ><h6><FontAwesomeIcon icon={faHome}/> Home</h6></Nav.Link>
                     </NavItem>
                     <NavItem>
-                        <Nav.Link href="/addTodo"><h6><FontAwesomeIcon icon={faTasks}/> Finished Todo's</h6></Nav.Link>
+                        <Nav.Link href="/history"><h6><FontAwesomeIcon icon={faTasks}/> Finished Todo's</h6></Nav.Link>
                     </NavItem>
                     <NavItem>
                         <Nav.Link href={"/settings"}><h6><FontAwesomeIcon icon={faCog}/> Settings</h6></Nav.Link>
