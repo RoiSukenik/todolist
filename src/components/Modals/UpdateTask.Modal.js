@@ -31,7 +31,7 @@ function UpdateTaskModal(props){
                    aria-labelledby="contained-modal-title-vcenter"
                    centered>
                 <Modal.Header closeButton>
-                    <Modal.Title >Add Task</Modal.Title>
+                    <Modal.Title >Update Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>

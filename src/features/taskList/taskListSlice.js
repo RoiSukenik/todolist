@@ -1,7 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 
-
 export const taskListSlice = createSlice({
     name: 'taskList',
     initialState:{
@@ -26,7 +25,7 @@ export const taskListSlice = createSlice({
             {
                 return taskName1 === taskName2
             }
-            const updatedTaskList = state.list.filter(task =>!isTaskNameEqual(task.TaskName,action.payload.TaskName))
+            const updatedTaskList = state.list.filter(task =>!isTaskNameEqual(task.TaskName,action.payload.TaskName));
             state.list = updatedTaskList;
         }
     }

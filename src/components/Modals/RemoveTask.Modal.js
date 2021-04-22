@@ -2,6 +2,10 @@ import {Button, Form, FormGroup, Modal, Spinner} from "react-bootstrap";
 import {React, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {removeTaskByName} from "../../features/taskList/taskListSlice";
+import {addToHistory} from "../../features/taskList/taskListHistorySlice";
+
+
+
 
 function RemoveTaskModal(props){
 
@@ -16,10 +20,18 @@ function RemoveTaskModal(props){
     const RemoveTaskListItem = ()=>
     {
         setIsSaving(!isSaving)
-        const taskToRemove = {
+        const nameOfTaskToRemove = {
             'TaskName': taskName,
         }
-        dispatch(removeTaskByName(taskToRemove));
+        const isTaskNameEqual=(taskName1,taskName2)=>
+        {
+            return taskName1 === taskName2
+        }
+        const toBeAdded=list.filter(taskToMove =>
+            isTaskNameEqual(taskToMove.TaskName,nameOfTaskToRemove.TaskName))
+        toBeAdded.forEach((task) => dispatch(addToHistory(task)))
+
+        dispatch(removeTaskByName(nameOfTaskToRemove));
         props.handleClose();
         setIsSaving(false)
     }
@@ -30,7 +42,7 @@ function RemoveTaskModal(props){
                    aria-labelledby="contained-modal-title-vcenter"
                    centered>
                 <Modal.Header closeButton>
-                    <Modal.Title >Add Task</Modal.Title>
+                    <Modal.Title >Remove Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
