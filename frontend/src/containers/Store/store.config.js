@@ -1,11 +1,12 @@
 import { configureStore} from '@reduxjs/toolkit'
 import taskListSliceReducer from "../../features/taskList/taskListSlice";
-import taskListHistorySliceReducer from "../../features/taskList/taskListHistorySlice";
-
+import trashSliceReducer from "../../features/taskList/trashSlice";
+import historySliceReducer from "../../features/taskList/historySlice";
 
 export default configureStore({
     reducer: {
         taskList: taskListSliceReducer,
-        removedList: taskListHistorySliceReducer,
+        trash: trashSliceReducer,
+        history: historySliceReducer,
     },
 })

@@ -1,7 +1,7 @@
 import {Button, Form, FormGroup, Modal, Spinner} from "react-bootstrap";
 import React,{useState} from "react";
 import {useDispatch} from "react-redux";
-import {updateTaskByName} from "../../features/taskList/taskListSlice";
+import {updateByName} from "../../features/taskList/taskListSlice";
 
 function UpdateTaskModal(props){
 
@@ -19,7 +19,7 @@ function UpdateTaskModal(props){
             'TaskName': task.TaskName,
             'Task': taskDescription
         }
-        dispatch(updateTaskByName(taskToUpdate));
+        dispatch(updateByName(taskToUpdate));
         props.handleClose();
         setIsSaving(false)
     }

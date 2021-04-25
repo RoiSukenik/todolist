@@ -1,5 +1,5 @@
 import {React} from 'react';
-import { Nav, Navbar, NavItem} from 'react-bootstrap'
+import {Nav, Navbar, NavDropdown, NavItem} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faClipboard, faHome, faTasks, faCog, faTrash, faList, faSign} from '@fortawesome/free-solid-svg-icons'
 import { NavLink} from "react-router-dom";
@@ -8,6 +8,7 @@ import { NavLink} from "react-router-dom";
 
 
 function MyTopNavbar(props){
+
     return(
         <Navbar sticky={true} collapseOnSelect expand={"md"} bg={"dark"} variant={"dark"}  >
             <Navbar.Brand as={NavLink} to={"/"}>
@@ -19,15 +20,17 @@ function MyTopNavbar(props){
                     <NavItem>
                         <NavLink className={"nav-link"} to="/home" ><h6><FontAwesomeIcon icon={faHome}/> Home</h6></NavLink>
                     </NavItem>
-                    <NavItem>
-                        <NavLink className={"nav-link"} to="/todolist" ><h6><FontAwesomeIcon icon={faList}/> Todo List</h6></NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink className={"nav-link"} to="/history"><h6><FontAwesomeIcon icon={faTasks}/> Finished Todo's</h6></NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink className={"nav-link"} to="/trash"><h6><FontAwesomeIcon icon={faTrash}/> Trash</h6></NavLink>
-                    </NavItem>
+                    <NavDropdown className={"dropdown-item-text text-center -bold"} title={"Todo List"} id={"nav-dropdown-dark"}>
+                        <NavDropdown.Item>
+                                <NavLink to="/todolist" ><h6><FontAwesomeIcon icon={faList}/> Todo List</h6></NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                                <NavLink to="/history"><h6><FontAwesomeIcon icon={faTasks}/> Finished Todo's</h6></NavLink>
+                        </NavDropdown.Item>
+                        <NavDropdown.Item>
+                                <NavLink to="/trash"><h6><FontAwesomeIcon icon={faTrash}/> Trash</h6></NavLink>
+                        </NavDropdown.Item>
+                    </NavDropdown>
                     <NavItem>
                         <NavLink className={"nav-link"} to={"/settings"}><h6><FontAwesomeIcon icon={faCog}/> Settings</h6></NavLink>
                     </NavItem>

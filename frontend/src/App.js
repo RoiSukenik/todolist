@@ -9,6 +9,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import TodoList from "./containers/TodoList/TodoList";
 import History from "./containers/History/History";
 import Home from "./containers/Home/Home";
+import Trash from "./containers/Trash/Trash";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path={"/home"} component={Home}/>
             <Route path={"/todolist"} component={TodoList}/>
             <Route path={"/history"} component={History}/>
+            <Route path={"/trash"} component={Trash}/>
         </Switch>
       </Router>
   );

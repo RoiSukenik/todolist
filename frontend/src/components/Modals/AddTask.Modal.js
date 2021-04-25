@@ -3,31 +3,45 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {addTask} from "../../features/taskList/taskListSlice";
 
+
 function AddTaskModal(props){
 
+    const [id,setId]=                               useState(0)
     const [fullName,setFullName]=                   useState('');
     const [taskName,setTaskName]=                   useState('');
     const [taskDescription,setTaskDescription]=     useState('');
     const [isSaving,setIsSaving] =                  useState(false) ;
 
-    const dispatch = useDispatch();
 
+    const dispatch = useDispatch();
+    const clearState = ()=>{
+        setFullName('');
+        setTaskName('');
+        setTaskDescription('');
+        setId(id+1);
+    }
     const addToTaskList = ()=>
     {
         setIsSaving(!isSaving)
         const newTask=
             {
+                'id':id,
                 'Author': fullName,
                 'TaskName': taskName,
                 'Task':taskDescription
             }
+            clearState();
         dispatch(addTask(newTask));
         props.handleClose();
         setIsSaving(false)
     }
+    const handleSubmit = () => {
+        addToTaskList();
+    };
     return(
         <>
-            <Modal show={props.show} onHide={props.handleClose}
+            <Modal show={props.show}
+                   onHide={props.handleClose}
                    size="lg"
                    aria-labelledby="contained-modal-title-vcenter"
                    centered>
@@ -36,7 +50,10 @@ function AddTaskModal(props){
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <FormGroup as={"Row"} controlId={"task.ControlInput1"}>
+                        <FormGroup
+                            as={"Row"}
+                            controlId={"task.ControlInput1"}
+                            >
                             <Form.Label>Full Name:</Form.Label>
                             <Form.Control type={"text"}
                                           placeholder={"Full Name"}
@@ -44,22 +61,24 @@ function AddTaskModal(props){
                         </FormGroup>
                         <FormGroup as={"Row"} controlId={"task.ControlInput1"}>
                             <Form.Label>Task Name:</Form.Label>
-                            <Form.Control type={"text"}
+                            <Form.Control
+                                          type={"text"}
                                           placeholder={"Task Name"}
-                                          onChange={e => setTaskName(e.target.value)}/>
+                                          onChange={e => setTaskName(e.target.value)} />
                         </FormGroup>
                         <FormGroup as={"Row"} controlId={"task.ControlInput2"}>
                             <Form.Label>Task:</Form.Label>
-                            <Form.Control as={"textarea"}
+                            <Form.Control
+                                          as={"textarea"}
                                           placeholder={"Write task description here..."}
-                                          onChange={e => setTaskDescription(e.target.value)}/>
+                                          onChange={e => setTaskDescription(e.target.value)} />
                         </FormGroup>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={props.handleClose}>Close</Button>
-                    {isSaving && (<Button variant="primary" onClick={addToTaskList}><Spinner animation="border" size={"sm"} />Save Changes</Button>)}
-                    {!isSaving && (<Button variant="primary" onClick={addToTaskList}>Save Changes</Button>)}
+                    {isSaving && (<Button   variant="primary"  onClick={handleSubmit}><Spinner animation="border" size={"sm"} />Save Changes</Button>)}
+                    {!isSaving && (<Button  variant="primary" onClick={handleSubmit} >Save Changes</Button>)}
                 </Modal.Footer>
             </Modal>
         </>

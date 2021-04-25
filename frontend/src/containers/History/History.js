@@ -1,16 +1,22 @@
 import React from 'react';
 import Header from "../../components/Header";
-import {Accordion, Col, Container, Row} from "react-bootstrap";
-import Task from "../../components/Task/Task";
+import {Accordion, Breadcrumb, Col, Container, Row} from "react-bootstrap";
 import {useSelector} from "react-redux";
+import HistoryTask from "../../components/Task/HistoryTask";
+import {NavLink} from "react-router-dom";
 
 function History(props)
 {
-    const {historyList} = useSelector((state) => state.removedList)
+    const {list} = useSelector((state) => state.history)
     let headerContent = "Here you can view past tasks";
     return(
         <>
             <Header headerContent={headerContent} NavBarActiveKey={props.location}/>
+            <Breadcrumb>
+                <Breadcrumb.Item><NavLink to={"/"}>Home</NavLink></Breadcrumb.Item>
+                <Breadcrumb.Item><NavLink to={"/todolist"}>Todo List</NavLink></Breadcrumb.Item>
+                <Breadcrumb.Item active>History</Breadcrumb.Item>
+            </Breadcrumb>
             <Container fluid className={"border border-dark"}>
                 <div className={" d-none d-md-block "}>
                     <Row >
@@ -22,10 +28,10 @@ function History(props)
                         </Col>
                     </Row>
                 </div>
-                <Accordion defaultActiveKey={0}>
-                    {historyList.map((task,idx) =>{
+                <Accordion defaultActiveKey={"0"}>
+                    {list.map((task,idx) =>{
                         return(
-                            <Task task={task} idx={idx}/>
+                            <HistoryTask task={task} idx={idx}/>
                         )
                     })}
                 </Accordion>

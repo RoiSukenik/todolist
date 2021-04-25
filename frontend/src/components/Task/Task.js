@@ -6,45 +6,43 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCheck, faEdit, faTrash} from '@fortawesome/free-solid-svg-icons';
 
 import {UpdateTaskModal} from "../Modals";
-import {delTaskByName} from "../../features/taskList/taskListSlice";
-import {addToHistory} from "../../features/taskList/taskListHistorySlice";
+import {delById} from "../../features/taskList/taskListSlice";
+import {addTrash} from "../../features/taskList/trashSlice";
+import {addHistory} from "../../features/taskList/historySlice";
 
 
 function Task(props){
 
     const task = props.task
-    const idx = `${props.idx}`
+    const idx = `${props.task.id}`
 
     const list = useSelector(state => state.tasklist)
     const dispatch = useDispatch();
 
-
-    const [show,setShow] = useState("Hide");
     const [showUpdate,setShowUpdate]= useState(false);
 
     const handleCloseUpdate = () => setShowUpdate(false);
     const handleShowUpdate = ()=> setShowUpdate(true);
-    const toggleShowText= ()=> {
-        if(show === "Show" ) setShow("Hide") ;
-        else setShow("Show");
+
+    const RemoveTaskListItem = ()=> {
+        dispatch(addTrash(task));
+        dispatch(delById(task.id));
     }
-    const RemoveTaskListItem = (task)=> {
-        dispatch(addToHistory(task))
-        dispatch(delTaskByName(task.TaskName));
+    const moveToHistory =()=> {
+        dispatch(addHistory(task));
+        dispatch(delById(task.id));
     }
+
     useEffect(()=>{},[list])
     return(
             <Card>
                 <Card.Header>
-                    <Accordion.Toggle
-                        as={Button}
-                        eventKey={idx}
-                        onClick={toggleShowText}>
-                        {show}
+                    <Accordion.Toggle as={Button} varient={"primary"} eventKey={idx}>
+                        {task.TaskName}
                     </Accordion.Toggle>
                     <ButtonGroup className={"float-right"}>
                         <Button variant={"success"}>
-                            <FontAwesomeIcon icon={faCheck}/>
+                            <FontAwesomeIcon icon={faCheck} onClick={moveToHistory}/>
                         </Button>
                         <Button variant={"primary"} onClick={handleShowUpdate}>
                             <FontAwesomeIcon icon={faEdit}/>
