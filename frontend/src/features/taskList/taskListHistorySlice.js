@@ -1,7 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-
-
 export const taskListHistorySlice = createSlice({
     name: 'taskListHistory',
     initialState:{
@@ -10,7 +8,7 @@ export const taskListHistorySlice = createSlice({
     reducers: {
         addToHistory: (state, action) =>
         {
-            state.historyList =[...state.historyList,[action.payload]]
+            state.historyList =[...state.historyList,action.payload]
         }
     }
 })

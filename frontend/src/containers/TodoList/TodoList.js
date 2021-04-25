@@ -1,12 +1,12 @@
 import {React,useState} from 'react';
 
 import Header from "../../components/Header";
-import {Button, ButtonGroup, Card, Col, Container, Nav, NavItem, NavLink, Row, Tab} from "react-bootstrap";
+import {Accordion, Button, ButtonGroup, Col, Container, Row} from "react-bootstrap";
 import {AddTaskModal, RemoveTaskModal, UpdateTaskModal} from '../../components/Modals/index'
 import {useSelector} from "react-redux";
 import Task from "../../components/Task/Task";
 
-function Home(props){
+function TodoList(props){
 
     const [showAdd,setShowAdd]= useState(false);
     const [showUpdate,setShowUpdate]= useState(false);
@@ -26,7 +26,7 @@ function Home(props){
     const headerContent ="Welcome to my amazing todo list, Hope it will help you!";
     return(
         <>
-            <Header headerContent={headerContent} NavBarActiveKey={props.location}/>
+            <Header headerContent={headerContent} NavBarActiveKey={props.location }/>
             <ButtonGroup className={"align-self-md-auto align-middle d-flex justify-content-center"}>
                 <Button variant={"dark"} onClick={handleShowAdd}>Add Task</Button>
                 <Button variant={"dark"} onClick={handleShowUpdate}>Update Task</Button>
@@ -35,24 +35,26 @@ function Home(props){
             <AddTaskModal show={showAdd} handleShow={handleShowAdd} handleClose={handleCloseAdd}/>
             <UpdateTaskModal show={showUpdate} handleShow={handleCloseUpdate} handleClose={handleCloseUpdate}/>
             <RemoveTaskModal show={showRemove} handleShow={handleShowRemove} handleClose={handleCloseRemove}/>
-            <Container fluid className={"border border-dark"}>
-                <Row >
-                    <Col sm={2}>
-                        <h4 className={"text-center"}>Task Name</h4>
-                    </Col>
-                    <Col sm={10} >
-                        <h4 className={"text-center"}>Task Description</h4>
-                    </Col>
-                </Row>
-                <Tab.Container id={"left-tabs"} defaultActiveKey={"first"}>
+            <Container fluid className={"border border-dark"} >
+                <div className={"d-none d-md-block"}>
+                    <Row >
+                        <Col sm={3}>
+                            <h4 className={"text-center"}>Task Name</h4>
+                        </Col>
+                        <Col sm={9} >
+                            <h4 className={"text-center"}>Task Description</h4>
+                        </Col>
+                    </Row>
+                </div>
+                <Accordion>
                     {list.map((task,idx) =>{
                         return(
                             <Task task={task} idx={idx}/>
                         )
                     })}
-                </Tab.Container>
+                </Accordion>
             </Container>
         </>
     )
 }
-export default Home;
+export default TodoList;

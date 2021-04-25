@@ -15,7 +15,6 @@ function AddTaskModal(props){
     const addToTaskList = ()=>
     {
         setIsSaving(!isSaving)
-        setTimeout(10000)
         const newTask=
             {
                 'Author': fullName,

@@ -4,10 +4,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './containers/Store/store.Config'
+import store from './containers/Store/store.config'
+
 import {Provider} from "react-redux";
-
-
 
 ReactDOM.render(
         <Provider store={store}>

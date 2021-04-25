@@ -11,7 +11,6 @@ function RemoveTaskModal(props){
 
 
     const [taskName,setTaskName]=   useState('');
-    const [taskInfo,setTaskInfo]=   useState('');
     const [isSaving,setIsSaving]=   useState(false) ;
 
     const {list} = useSelector((state)=>state.taskList)
