@@ -1,10 +1,11 @@
 import {React,useState} from 'react';
 
 import Header from "../../components/Header";
-import {Accordion, Button, ButtonGroup, Col, Container, Row} from "react-bootstrap";
+import {Accordion, Breadcrumb, Button, ButtonGroup, Col, Container, Row} from "react-bootstrap";
 import {AddTaskModal, RemoveTaskModal, UpdateTaskModal} from '../../components/Modals/index'
 import {useSelector} from "react-redux";
 import Task from "../../components/Task/Task";
+import {NavLink} from "react-router-dom";
 
 function TodoList(props){
 
@@ -27,6 +28,10 @@ function TodoList(props){
     return(
         <>
             <Header headerContent={headerContent} NavBarActiveKey={props.location }/>
+            <Breadcrumb>
+                <Breadcrumb.Item><NavLink to={"/"}>Home</NavLink></Breadcrumb.Item>
+                <Breadcrumb.Item active>Task List</Breadcrumb.Item>
+            </Breadcrumb>
             <ButtonGroup className={"align-self-md-auto align-middle d-flex justify-content-center"}>
                 <Button variant={"dark"} onClick={handleShowAdd}>Add Task</Button>
                 <Button variant={"dark"} onClick={handleShowUpdate}>Update Task</Button>

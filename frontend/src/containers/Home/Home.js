@@ -1,30 +1,42 @@
-import {React} from 'react'
+import React from 'react';
 import Header from "../../components/Header";
-import {Carousel, Container, Image} from "react-bootstrap";
-
+import MyCarousel from "../../components/MyCarousel/MyCarouselSlide";
+import {carouselItems} from "./CarouselData";
+import {Breadcrumb, Button, ButtonGroup, Col, Container, Row} from "react-bootstrap";
+import {intro} from "./Intro";
 
 function Home(){
     return(
-        <>
-            <Header/>
-            <Carousel fade={true}>
-                <Carousel.Item interval={5000}>
-                        <Carousel.Caption>
-                            <h4>Add Amazing Styled Todos!</h4>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                <Carousel.Item interval={5000}>
-                        <Carousel.Caption>
-                            <h4>Add Amazing Styled Todos!</h4>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                <Carousel.Item interval={5000}>
-                        <Carousel.Caption>
-                            <h4>Add Amazing Styled Todos!</h4>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-            </Carousel>
-        </>
+        <div>
+            <Header displayJumbotron={false}/>
+            <MyCarousel carouselItems={carouselItems}/>
+            <Breadcrumb>
+                <Breadcrumb.Item>Home</Breadcrumb.Item>
+            </Breadcrumb>
+            <Container fluid>
+                <Row>
+                    <Col>
+                        {intro}
+                    </Col>
+                </Row>
+                <Row className={"justify-content-center"}>
+                    <h1 className={"text-center"}>Let's Get Started!</h1>
+                </Row>
+                <Row className={"justify-content-center"}>
+                    <ButtonGroup>
+                        <Button variant={"primary"}>
+                            Sign Up
+                        </Button>
+                        <Button variant={"success"}>
+                            Sign In
+                        </Button>
+                    </ButtonGroup>
+                </Row>
+            </Container>
+        </div>
+
+
     )
 }
 export default Home;
+

@@ -9,9 +9,9 @@ import { NavLink} from "react-router-dom";
 
 function MyTopNavbar(props){
     return(
-        <Navbar  sticky={true} collapseOnSelect expand={"md"} bg={"dark"} variant={"dark"}  >
-            <Navbar.Brand>
-                <h2><FontAwesomeIcon icon={faClipboard} /> Roi's Todo List</h2>
+        <Navbar sticky={true} collapseOnSelect expand={"md"} bg={"dark"} variant={"dark"}  >
+            <Navbar.Brand as={NavLink} to={"/"}>
+                    <h2><FontAwesomeIcon icon={faClipboard} /> Roi's Todo List</h2>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav"/>
             <Navbar.Collapse id="basic-navbar-nav">

@@ -1,21 +1,18 @@
-import {React} from 'react'
-import {Col, Jumbotron, Row} from 'react-bootstrap'
+import React from 'react'
+
+import MyHeaderJumbotron from '../MyHeaderJumbotron/MyHeaderJumbotron';
 import MyTopNavbar from "../TopNavBar/MyTopNavBar";
 
 function Header(props) {
-    return (
-        <div>
-            <MyTopNavbar NavBarActiveKey={props.location}/>
-            <Jumbotron fluid={true}>
-                <Row className="justify-content-md-center">
-                    <Col >
-                        <h2 className={"text-center"}>Roi's Todo List</h2>
-                        <h3 className={"text-center"}>{props.headerContent}</h3>
-                    </Col>
-                </Row>
-            </Jumbotron>
-        </div>
+    const {location,displayJumbotron} =props;
 
+    return(
+        <div>
+            <MyTopNavbar NavBarActiveKey={location}/>
+            {displayJumbotron && <MyHeaderJumbotron/>}
+        </div>
     )
 }
+Header.defaultProps = {displayJumbotron:true};
+
 export default Header;

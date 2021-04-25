@@ -1,4 +1,5 @@
-import './App.css';
+import './css/App.css';
+import './css/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -7,7 +8,7 @@ import History from "./containers/History/History";
 import Home from "./containers/Home/Home";
 
 import {Switch,Route, BrowserRouter as Router, Redirect}from 'react-router-dom';
-import {React} from "react";
+import React from "react";
 
 
 function App() {
