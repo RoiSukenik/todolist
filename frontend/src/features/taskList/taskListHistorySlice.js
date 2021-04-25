@@ -9,9 +9,17 @@ export const taskListHistorySlice = createSlice({
         addToHistory: (state, action) =>
         {
             state.historyList =[...state.historyList,action.payload]
+        },
+        delFromHistory: (state,action) =>{
+            const isTaskNameEqual=(taskName1,taskName2)=>
+            {
+                return taskName1 === taskName2
+            }
+            const updatedTaskList = state.list.filter(task =>!isTaskNameEqual(task.TaskName,action.payload));
+            state.list = updatedTaskList;
         }
     }
 })
 
-export const {addToHistory} = taskListHistorySlice.actions;
+export const {addToHistory,delFromHistory} = taskListHistorySlice.actions;
 export default taskListHistorySlice.reducer;

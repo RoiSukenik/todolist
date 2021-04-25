@@ -1,26 +1,19 @@
-import {React,useState} from 'react';
+import React,{useState} from 'react';
+import {useSelector} from "react-redux";
+import {NavLink} from "react-router-dom";
+import {Accordion, Breadcrumb, Button, Col, Container, Row} from "react-bootstrap";
 
 import Header from "../../components/Header";
-import {Accordion, Breadcrumb, Button, ButtonGroup, Col, Container, Row} from "react-bootstrap";
-import {AddTaskModal, RemoveTaskModal, UpdateTaskModal} from '../../components/Modals/index'
-import {useSelector} from "react-redux";
 import Task from "../../components/Task/Task";
-import {NavLink} from "react-router-dom";
+
+import {AddTaskModal} from '../../components/Modals/index'
 
 function TodoList(props){
 
     const [showAdd,setShowAdd]= useState(false);
-    const [showUpdate,setShowUpdate]= useState(false);
-    const [showRemove,setShowRemove]= useState(false);
 
     const handleCloseAdd = () => setShowAdd(false);
     const handleShowAdd = ()=> setShowAdd(true);
-
-    const handleCloseUpdate = () => setShowUpdate(false);
-    const handleShowUpdate = ()=> setShowUpdate(true);
-
-    const handleCloseRemove = () => setShowRemove(false);
-    const handleShowRemove = ()=> setShowRemove(true);
 
     const {list} = useSelector((state) => state.taskList)
 
@@ -32,14 +25,8 @@ function TodoList(props){
                 <Breadcrumb.Item><NavLink to={"/"}>Home</NavLink></Breadcrumb.Item>
                 <Breadcrumb.Item active>Task List</Breadcrumb.Item>
             </Breadcrumb>
-            <ButtonGroup className={"align-self-md-auto align-middle d-flex justify-content-center"}>
-                <Button variant={"dark"} onClick={handleShowAdd}>Add Task</Button>
-                <Button variant={"dark"} onClick={handleShowUpdate}>Update Task</Button>
-                <Button variant={"dark"} onClick={handleShowRemove}>Remove Task</Button>
-            </ButtonGroup>
+            <Button variant={"dark"} onClick={handleShowAdd}>Add Task</Button>
             <AddTaskModal show={showAdd} handleShow={handleShowAdd} handleClose={handleCloseAdd}/>
-            <UpdateTaskModal show={showUpdate} handleShow={handleCloseUpdate} handleClose={handleCloseUpdate}/>
-            <RemoveTaskModal show={showRemove} handleShow={handleShowRemove} handleClose={handleCloseRemove}/>
             <Container fluid className={"border border-dark"} >
                 <div className={"d-none d-md-block"}>
                     <Row >
@@ -51,7 +38,7 @@ function TodoList(props){
                         </Col>
                     </Row>
                 </div>
-                <Accordion>
+                <Accordion defaultActiveKey={"0"}>
                     {list.map((task,idx) =>{
                         return(
                             <Task task={task} idx={idx}/>

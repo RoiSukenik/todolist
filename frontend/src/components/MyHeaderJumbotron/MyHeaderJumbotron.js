@@ -6,8 +6,7 @@ function MyHeaderJumbotron(props)
     const {headerContent} = props;
 
     return(
-        <>
-            <Jumbotron fluid={true}>
+            <Jumbotron fluid={true} className={"mb-0"}>
                 <Row className="justify-content-md-center">
                     <Col >
                         <h2 className={"text-center"}>Roi's Todo List</h2>
@@ -15,8 +14,6 @@ function MyHeaderJumbotron(props)
                     </Col>
                 </Row>
             </Jumbotron>
-        </>
-
     )
 }
 export default MyHeaderJumbotron;

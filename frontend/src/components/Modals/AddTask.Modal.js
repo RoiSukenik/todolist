@@ -1,14 +1,14 @@
 import {Button, Form, FormGroup, Modal, Spinner} from "react-bootstrap";
-import {React, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {addNewTask} from "../../features/taskList/taskListSlice";
+import {addTask} from "../../features/taskList/taskListSlice";
 
 function AddTaskModal(props){
 
-    const [fullName,setFullName]=   useState('');
-    const [taskName,setTaskName]=   useState('');
-    const [taskDescription,setTaskDescription]=   useState('');
-   const [isSaving,setIsSaving] =   useState(false) ;
+    const [fullName,setFullName]=                   useState('');
+    const [taskName,setTaskName]=                   useState('');
+    const [taskDescription,setTaskDescription]=     useState('');
+    const [isSaving,setIsSaving] =                  useState(false) ;
 
     const dispatch = useDispatch();
 
@@ -21,8 +21,7 @@ function AddTaskModal(props){
                 'TaskName': taskName,
                 'Task':taskDescription
             }
-
-        dispatch(addNewTask(newTask));
+        dispatch(addTask(newTask));
         props.handleClose();
         setIsSaving(false)
     }

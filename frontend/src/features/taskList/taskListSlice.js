@@ -7,7 +7,7 @@ export const taskListSlice = createSlice({
         list: [],
     },
     reducers: {
-        addNewTask: (state,action) =>{
+        addTask: (state,action) =>{
             state.list = [...state.list,action.payload];
         },
         updateTaskByName: (state,action)=>
@@ -19,17 +19,16 @@ export const taskListSlice = createSlice({
                 }
             })
         },
-        removeTaskByName: (state,action) =>{
-
+        delTaskByName: (state,action) =>{
             const isTaskNameEqual=(taskName1,taskName2)=>
             {
                 return taskName1 === taskName2
             }
-            const updatedTaskList = state.list.filter(task =>!isTaskNameEqual(task.TaskName,action.payload.TaskName));
+            const updatedTaskList = state.list.filter(task =>!isTaskNameEqual(task.TaskName,action.payload));
             state.list = updatedTaskList;
         }
     }
 })
 
-export const {addNewTask,updateTaskByName,removeTaskByName} = taskListSlice.actions;
+export const {addTask,updateTaskByName,delTaskByName} = taskListSlice.actions;
 export default taskListSlice.reducer;
