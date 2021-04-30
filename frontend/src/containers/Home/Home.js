@@ -1,17 +1,17 @@
 import React from 'react';
-import Header from "../../components/Header";
 import MyCarousel from "../../components/MyCarousel/MyCarouselSlide";
 import {carouselItems} from "./CarouselData";
 import {Breadcrumb, Button, ButtonGroup, Col, Container, Row} from "react-bootstrap";
 import {intro} from "./Intro";
+import Layout from "../../components/layout/Layout";
 
 function Home(){
-    return(
-        <div>
-            <Header displayJumbotron={false}/>
+
+    let body =
+        <>
             <MyCarousel carouselItems={carouselItems}/>
             <Breadcrumb>
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
+                <Breadcrumb.Item active={true} className={"text-responsive"}>Home</Breadcrumb.Item>
             </Breadcrumb>
             <Container fluid>
                 <Row>
@@ -33,9 +33,9 @@ function Home(){
                     </ButtonGroup>
                 </Row>
             </Container>
-        </div>
-
-
+        </>
+    return(
+            <Layout displayJumbotron={false} body={body}/>
     )
 }
 export default Home;

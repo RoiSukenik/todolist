@@ -6,10 +6,9 @@ import './css/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 
-import TodoList from "./containers/TodoList/TodoList";
-import History from "./containers/History/History";
-import Home from "./containers/Home/Home";
-import Trash from "./containers/Trash/Trash";
+import {Home,FinishedTasks,Trash,Tasks} from './containers'
+
+
 
 function App() {
   return (
@@ -19,8 +18,8 @@ function App() {
               <Redirect to={"/home"}/>
             </Route>
             <Route path={"/home"} component={Home}/>
-            <Route path={"/todolist"} component={TodoList}/>
-            <Route path={"/history"} component={History}/>
+            <Route path={"/tasks"} component={Tasks}/>
+            <Route path={"/finishedtasks"} component={FinishedTasks}/>
             <Route path={"/trash"} component={Trash}/>
         </Switch>
       </Router>

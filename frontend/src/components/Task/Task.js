@@ -5,7 +5,7 @@ import {Accordion, Button, ButtonGroup, Card} from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCheck, faEdit, faTrash} from '@fortawesome/free-solid-svg-icons';
 
-import {UpdateTaskModal} from "../Modals";
+import {UpdateTaskModal} from "../BootstrapModals";
 import {delById} from "../../features/taskList/taskListSlice";
 import {addTrash} from "../../features/taskList/trashSlice";
 import {addHistory} from "../../features/taskList/historySlice";

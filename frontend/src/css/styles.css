@@ -10,3 +10,10 @@
             -1px  1px 0 #000,
             -1px  0   0 #000;
 }
+.text-responsive {
+    font-size: calc(30% + 1vw + 1vh);
+}
+.headerSection
+{
+    margin-top:5em;
+}

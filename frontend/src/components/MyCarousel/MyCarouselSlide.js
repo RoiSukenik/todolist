@@ -6,7 +6,7 @@ function MyCarouselSlide(props){
     const carouselItems = props.carouselItems;
 
     return(
-        <Carousel fluid fade>
+        <Carousel controls={false} fluid fade>
             {
                 carouselItems.map(item =>{
                     return(
