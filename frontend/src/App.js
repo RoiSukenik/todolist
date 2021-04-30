@@ -8,8 +8,6 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import {Home,FinishedTasks,Trash,Tasks} from './containers'
 
-
-
 function App() {
   return (
       <Router>
